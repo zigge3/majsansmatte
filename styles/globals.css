@@ -14,3 +14,31 @@ a {
 * {
   box-sizing: border-box;
 }
+
+button {
+  font-weight: bolder;
+  height: 50px;
+  width: 100px;
+}
+
+.btns {
+  position: fixed;
+  bottom: 48px;
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score {
+  font-size: 28px;
+  position: fixed;
+  top: 12px;
+  right: 24px;
+  border: 1px solid black;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+
+  border-radius: 50%;
+}
