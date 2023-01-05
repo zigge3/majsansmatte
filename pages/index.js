@@ -50,6 +50,7 @@ export default function Home() {
         { backgroundColor: "red" },
         { backgroundColor: "white", duration: 1 }
       );
+      setScore(score - 1);
     }
     setTimeout(nextQuestion, 2000);
   };
