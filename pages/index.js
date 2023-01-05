@@ -7,18 +7,20 @@ import gsap from "gsap";
 export default function Home() {
   const [question, setQuestion] = useState([]);
   const [score, setScore] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [currentAnsw, setCurrentAnsw] = useState("");
   const [n1, n2] = question;
   const [vals, setVals] = useState([]);
   const nextQuestion = () => {
     const quest = randomQuestion();
+    setIsDisabled(false);
     setCurrentAnsw("");
     setQuestion(quest);
     setVals(
       _.shuffle([
         quest[0] * quest[1],
-        _.random(1, 100),
-        _.random(1, 100),
+        quest[0] * quest[1] + (Math.floor(Math.random() * 3) + 1),
+        quest[0] * quest[1] - (Math.floor(Math.random() * 3) + 1),
         _.random(1, 100),
         _.random(1, 100),
         _.random(1, 100),
@@ -26,11 +28,13 @@ export default function Home() {
     );
   };
   useEffect(() => {
+    setScore(parseInt(localStorage.getItem("score")) || 0);
     nextQuestion();
   }, []);
 
   const correctQuestion = (val) => {
     setCurrentAnsw(question[0] * question[1]);
+    setIsDisabled(true);
     if (val === question[0] * question[1]) {
       gsap.fromTo(
         document.body,
@@ -39,6 +43,7 @@ export default function Home() {
       );
 
       setScore(score + 1);
+      localStorage.setItem("score", score + 1);
     } else {
       gsap.fromTo(
         document.body,
@@ -54,7 +59,9 @@ export default function Home() {
       <h1>{currentAnsw ? currentAnsw : ` ${n1} * ${n2}`}</h1>
       <div className="btns">
         {vals.map((val) => (
-          <button onClick={() => correctQuestion(val)}>{val}</button>
+          <button disabled={isDisabled} onClick={() => correctQuestion(val)}>
+            {val}
+          </button>
         ))}
       </div>
       <div className="score">{score}</div>
