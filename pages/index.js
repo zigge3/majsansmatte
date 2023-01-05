@@ -15,7 +15,14 @@ export default function Home() {
     setCurrentAnsw("");
     setQuestion(quest);
     setVals(
-      _.shuffle([quest[0] * quest[1], _.random(1, 100), _.random(1, 100)])
+      _.shuffle([
+        quest[0] * quest[1],
+        _.random(1, 100),
+        _.random(1, 100),
+        _.random(1, 100),
+        _.random(1, 100),
+        _.random(1, 100),
+      ])
     );
   };
   useEffect(() => {
