@@ -63,8 +63,5 @@ export default function Home() {
 }
 
 const randomQuestion = () => {
-  return [
-    Math.floor(Math.random() * 10) + 1,
-    Math.floor(Math.random() * 10) + 1,
-  ];
+  return [Math.floor(Math.random() * 7) + 3, Math.floor(Math.random() * 7) + 3];
 };
